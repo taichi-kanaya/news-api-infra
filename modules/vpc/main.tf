@@ -30,3 +30,8 @@ resource "aws_subnet" "private_subnet_1c" {
   availability_zone       = "ap-northeast-1c"
   map_public_ip_on_launch = false
 }
+
+# インターネットゲートウェイ
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+}
