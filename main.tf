@@ -8,6 +8,10 @@ terraform {
   required_version = ">= 1.5.2"
 }
 
+module "route53_module" {
+  source = "./modules/route53"
+}
+
 module "s3_module" {
   source = "./modules/s3"
 }
