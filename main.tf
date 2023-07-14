@@ -10,16 +10,20 @@ terraform {
 
 module "route53_module" {
   source = "./modules/route53"
+  tags   = var.tags
 }
 
 module "s3_module" {
   source = "./modules/s3"
+  tags   = var.tags
 }
 
 module "vpc_module" {
   source = "./modules/vpc"
+  tags   = var.tags
 }
 
 module "cloud_watch_module" {
   source = "./modules/cloud_watch"
+  tags   = var.tags
 }
