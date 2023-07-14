@@ -27,3 +27,8 @@ module "cloud_watch_module" {
   source = "./modules/cloud_watch"
   tags   = var.tags
 }
+
+module "ecr_module" {
+  source = "./modules/ecr"
+  tags   = var.tags
+}
