@@ -9,13 +9,15 @@ terraform {
 }
 
 module "route53_module" {
-  source = "./modules/route53"
-  tags   = var.tags
+  source               = "./modules/route53"
+  tags                 = var.tags
+  public_hostzone_name = "attakait.com"
 }
 
 module "s3_module" {
-  source = "./modules/s3"
-  tags   = var.tags
+  source         = "./modules/s3"
+  tags           = var.tags
+  s3_backet_name = "news-api"
 }
 
 module "vpc_module" {
@@ -29,8 +31,9 @@ module "cloud_watch_module" {
 }
 
 module "ecr_module" {
-  source = "./modules/ecr"
-  tags   = var.tags
+  source              = "./modules/ecr"
+  tags                = var.tags
+  ecr_repository_name = "news-api"
 }
 
 module "iam_module" {

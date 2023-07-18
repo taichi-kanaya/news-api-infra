@@ -1,5 +1,5 @@
 # パブリックなホストゾーン
 resource "aws_route53_zone" "public" {
-  name = "attakait.com"
+  name = var.public_hostzone_name
   tags = var.tags
 }
