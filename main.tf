@@ -32,3 +32,9 @@ module "ecr_module" {
   source = "./modules/ecr"
   tags   = var.tags
 }
+
+module "iam_module" {
+  source              = "./modules/iam"
+  tags                = var.tags
+  ecr_repository_name = "news-api"
+}
