@@ -41,3 +41,12 @@ module "iam_module" {
   tags                = var.tags
   ecr_repository_name = "news-api"
 }
+
+module "alb_module" {
+  source              = "./modules/alb"
+  tags                = var.tags
+  vpc_id              = module.vpc_module.vpc_id
+  public_subnets      = module.vpc_module.public_subnets
+  ssl_certificate_arn = module.route53_module.ssl_certificate_arn
+}
+
