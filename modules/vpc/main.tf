@@ -12,7 +12,6 @@ locals {
 # news-api専用VPC
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
-  tags       = var.tags
 }
 
 # パブリックサブネット（マルチAZ）
@@ -23,7 +22,6 @@ resource "aws_subnet" "public_subnets" {
   cidr_block              = each.value["cidr_block"]
   availability_zone       = each.value["availability_zone"]
   map_public_ip_on_launch = true
-  tags                    = var.tags
 }
 # プライベートサブネット（マルチAZ）
 resource "aws_subnet" "private_subnets" {
@@ -33,13 +31,11 @@ resource "aws_subnet" "private_subnets" {
   cidr_block              = each.value["cidr_block"]
   availability_zone       = each.value["availability_zone"]
   map_public_ip_on_launch = false
-  tags                    = var.tags
 }
 
 # インターネットゲートウェイ
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
-  tags   = var.tags
 }
 
 # パブリックサブネット用ルートテーブル
@@ -50,8 +46,6 @@ resource "aws_route_table" "public_subnet" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.gw.id
   }
-
-  tags = var.tags
 }
 
 # パブリックサブネットにルートテーブルを紐付ける
@@ -67,7 +61,6 @@ resource "aws_eip" "nat" {
   for_each = aws_subnet.public_subnets
 
   domain = "vpc"
-  tags   = var.tags
 }
 
 # NATゲートウェイ
@@ -77,7 +70,6 @@ resource "aws_nat_gateway" "public_subnet" {
   subnet_id     = each.value.id
   allocation_id = aws_eip.nat[each.key].id
   depends_on    = [aws_internet_gateway.gw]
-  tags          = var.tags
 }
 
 # プライベートサブネット用ルートテーブル
@@ -89,7 +81,6 @@ resource "aws_route_table" "private_subnets" {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = each.value.id
   }
-  tags = var.tags
 }
 
 # プライベートサブネットにルートテーブルを紐付ける

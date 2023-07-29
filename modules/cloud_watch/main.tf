@@ -8,7 +8,6 @@ provider "aws" {
 resource "aws_sns_topic" "cost_threshold_exceeded" {
   provider = aws.virginia
   name     = "Cost_Threshold_Exceeded_Alarms_Topic"
-  tags     = var.tags
 }
 resource "aws_sns_topic_subscription" "email_subscription" {
   provider  = aws.virginia
@@ -31,5 +30,4 @@ resource "aws_cloudwatch_metric_alarm" "cost_threshold_exceeded" {
   threshold           = 50
   alarm_description   = "This metric monitors cost threshold exceeded"
   alarm_actions       = [aws_sns_topic.cost_threshold_exceeded.arn]
-  tags                = var.tags
 }
