@@ -1,10 +1,11 @@
-variable "tags" {
-  description = "AWSリソース用のタグ"
-  type        = map(string)
+variable "app_name" {
+  description = "アプリケーション名"
+  type        = string
   default     = null
 }
-variable "public_hostzone_name" {
-  description = "パブリックホストゾーン名"
+
+variable "domain_name" {
+  description = "ドメイン名"
   type        = string
   default     = null
 }

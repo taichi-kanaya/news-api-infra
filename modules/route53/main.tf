@@ -1,15 +1,12 @@
 # パブリックなホストゾーン
 resource "aws_route53_zone" "public" {
-  name = var.public_hostzone_name
-  tags = var.tags
+  name = var.domain_name
 }
 
 # SSL証明書を発行
 resource "aws_acm_certificate" "cert" {
-  domain_name       = "news-api.attakait.com"
+  domain_name       = "${var.app_name}.${var.domain_name}"
   validation_method = "DNS"
-
-  tags = var.tags
 
   lifecycle {
     create_before_destroy = true
