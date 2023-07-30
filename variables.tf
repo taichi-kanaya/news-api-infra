@@ -1,12 +1,3 @@
-variable "tags" {
-  description = "AWSリソース用のタグ"
-  type        = map(string)
-  default = {
-    Name        = "news-api"
-    Environment = "production"
-  }
-}
-
 variable "app_name" {
   description = "アプリケーション名"
   type        = string
