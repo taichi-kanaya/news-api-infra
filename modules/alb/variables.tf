@@ -1,5 +1,5 @@
 variable "vpc_id" {
-  description = "VPC ID"
+  description = "VPCのID"
   type        = string
   default     = null
 }
@@ -13,7 +13,7 @@ variable "public_subnets" {
 }
 
 variable "ssl_certificate_arn" {
-  description = "ssl certificate arn"
+  description = "SSL証明書のARN"
   type        = string
   default     = null
 }

@@ -1,5 +1,5 @@
 variable "vpc_id" {
-  description = "VPC ID"
+  description = "VPCのID"
   type        = string
   default     = null
 }

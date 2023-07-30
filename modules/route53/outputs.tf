@@ -1,5 +1,5 @@
 output "ssl_certificate_arn" {
-  description = "ssl certificate arn"
+  description = "SSL証明書のARN"
   value       = aws_acm_certificate.cert.arn
 }
 
