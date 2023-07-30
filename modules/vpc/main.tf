@@ -23,6 +23,7 @@ resource "aws_subnet" "public_subnets" {
   availability_zone       = each.value["availability_zone"]
   map_public_ip_on_launch = true
 }
+
 # プライベートサブネット（マルチAZ）
 resource "aws_subnet" "private_subnets" {
   for_each = { for s in local.private_subnets : s.cidr_block => s }
